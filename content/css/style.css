@@ -23,7 +23,7 @@ body{
   }
   
   #menu-bar{
-    background: crimson;
+    background: green;
     color: #fff;
     padding: 10px;
   }
@@ -44,10 +44,17 @@ body{
   #menu-bar li{
     float: right;
     margin-left: 20px;
+    
   }
   
   #menu-bar a{
-    color: #fff
+    color: #fff;
+    text-decoration: none;
+    background-color: blue;
+    padding: 7px;
+    border-radius: 10px;
+   
+
   }
   
   main{

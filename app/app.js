@@ -1,9 +1,24 @@
-var shoeApp = angular.module('shoeApp', []);
+var shoeApp = angular.module('shoeApp', ['ngRoute']);
 
 
 // shoeApp.config(function(){
-//     // Componenents we use before the app runs
+//     // Componenents we use before the contents are loaded
 // });
+shoeApp.config(['$routeProvider', function($routeProvider){
+    $routeProvider
+                  .when('/home', {
+                    templateUrl: 'views/home.html'
+
+                  })
+                  .when('/directory', {
+                    templateUrl: 'views/directory.html',
+                    controller: 'ShoeController'
+                  }).otherwise({
+                    redirectTo: '/home'
+                  })
+
+}]);
+
 
 
 
@@ -14,7 +29,7 @@ var shoeApp = angular.module('shoeApp', []);
 // });
 
 
-// $scope object on a controller is used to expose data to the views
+// $scope object on a controller is used to expose data and methods to the views
 shoeApp.controller('ShoeController', ['$scope', function($scope){
     $scope.removeShoe = function(shoe){
         var removeShoe = $scope.shoes.indexOf(shoe);

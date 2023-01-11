@@ -7,6 +7,8 @@
     <title>Shoes Angular Project</title>
     <link rel="stylesheet" href="content/css/style.css">
     <script src="app/lib/angular.min.js"></script>
+    <script src="app/lib/angular-route.min.js"></script>
+
     <script src="app/app.js"></script>
 
 </head>
@@ -37,7 +39,7 @@
     <!-- Expression -> With bind data to HTML DOM {{}} -->
     <!-- ng-init -> Create variables -->
     <!-- ng-repeat -->
-    <!-- Looping: Syntax: for newVariable in Collection -->
+    <!-- Looping: Syntax:  newVariable in Collection -->
     <!-- Modules -> Container-Like structure to hold various parts of the application -->
     <!-- controllers, services, filters, directives......   -->
     <!-- controllers -> control the application, by adding states(properties) and methods(behavior) to an application component-->
@@ -48,34 +50,16 @@
     <!--CRUD  -->
     <!-- ng-click -> Respond to click events -->
     <!-- ng-submit -> When use click on submit button -->
+    <!-- ng-src: images -->
+    <!-- views and Routing  ng-view directive to create a new view-->
+
 
     <header ng-include="'header.html'"></header>
-    <div class="content">
-        <div ng-controller="ShoeController">
-            <button ng-click="order='name'">Order by Name</button>
-            <button ng-click="order='color'">Order by Color</button>
-            <input type="text" placeholder="Search for Shoes" ng-model="search">
-            <ul>
-                <li ng-repeat="shoe in shoes | orderBy: order| filter:search" ng-show="shoe.availability">
-                    <img src="{{shoe.pic}}" style="margin: -12px 10px 0 0; float:left; width:50px;" ng-show="shoe.pic">
-                    <h3>Name : {{shoe.name}} - Price : {{shoe.price | currency: 'KES'}}</h3>
-                    <div class="remove" ng-click="removeShoe()">x</div>
-                    <span class="belt" style="background-color: {{shoe.color}};"> color {{shoe.color}} </span>
-                </li>
-            </ul>
+    <main ng-view></main>
+    <!-- to introduce routing we need another dependency(angular-route.min.js -> ngRoute) -->
 
-            <form ng-submit="addShoe()">
-                <input type="text" placeholder="Enter Name" ng-model="newshoe.name">
-                <input type="text" placeholder="Enter Color" ng-model="newshoe.color">
-                <input type="text" placeholder="Enter Price" ng-model="newshoe.price">
-                <input type="submit" value="Add new Shoe">
-            </form>
-        
-    
-        </div>
+    <!-- It could load either, home.html, or directory.html -->
 
-    </div>
-    
 
 
 
