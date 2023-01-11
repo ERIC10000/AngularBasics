@@ -30,7 +30,7 @@ shoeApp.config(['$routeProvider', function($routeProvider){
 
 
 // $scope object on a controller is used to expose data and methods to the views
-shoeApp.controller('ShoeController', ['$scope', function($scope){
+shoeApp.controller('ShoeController', ['$scope','$http', function($scope, $http){
     $scope.removeShoe = function(shoe){
         var removeShoe = $scope.shoes.indexOf(shoe);
        $scope.shoes.splice(removeShoe, 1);
@@ -51,44 +51,58 @@ shoeApp.controller('ShoeController', ['$scope', function($scope){
         $scope.newshoe.price = "";
     };
 
-
-   $scope.shoes = [
-                        {
-                            name:"Jordan 4",
-                            color : 'blue',
-                            price : 20,
-                            availability: true, 
-                            pic : "content/img/jordan.jpg"
-
-                        },
-
-                        {
-                            name:"Nike Roma",
-                            color:'red',
-                            price:25,
-                            availability:true, 
-                            pic: "content/img/nike.jpeg"
-                        },
-
-                        {
-                            name:"Vans ",
-                            color:'black',
-                            price:28,
-                            availability:true,
-                            pic : "content/img/vans.jpg"
-                        },
+    // service and json
+    // service -> Handles common tasks e,g $http(used sending and receiving data), $locations
+    // json -> Format of data is understood by almost all the system, irrespective of programming language, operating sytem.....
+   // Json data is transimmited using an API (Application Programming Interface)
+   // Local API or Online API (REST Api)
+   // API contains methods : GET -> Receiving data, POST -> Sending data, DELETE -> Removing, PUT -> Updating info on the API
 
 
-                        {
-                            name:"Airforce",
-                            color:'green',
-                            price:30, 
-                            availability:true,
-                            pic : "content/img/airforce.jpeg"
+    $http({
+        method: 'GET',
+        url : 'data/shoes.json'
+    }).then(function(response){
+        $scope.shoes = response.data;
+    });
+//    $scope.shoes = [
+//                         {
+//                             name:"Jordan 4",
+//                             color : 'blue',
+//                             price : 20,
+//                             availability: true, 
+//                             pic : "content/img/jordan.jpg"
 
-                        }
+//                         },
 
-                    ]
+//                         {
+//                             name:"Nike Roma",
+//                             color:'red',
+//                             price:25,
+//                             availability:true, 
+//                             pic: "content/img/nike.jpeg"
+//                         },
+
+//                         {
+//                             name:"Vans ",
+//                             color:'black',
+//                             price:28,
+//                             availability:true,
+//                             pic : "content/img/vans.jpg"
+//                         },
+
+
+//                         {
+//                             name:"Airforce",
+//                             color:'green',
+//                             price:30, 
+//                             availability:true,
+//                             pic : "content/img/airforce.jpeg"
+
+//                         }
+
+//                     ]
+//       console.log(angular.toJson($scope.shoes))
 
 
 }]);
